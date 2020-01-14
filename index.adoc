@@ -4,7 +4,3 @@
 :page-description: A community driven repository for Zimbra articles, tips and tricks.
 
 == List of articles in this repository
-
-{% for post in site.posts %}
-<a href=".{{ post.url }}">{{ post.navtitle }}</a>
-{% endfor %}
