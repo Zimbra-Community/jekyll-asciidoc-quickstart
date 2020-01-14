@@ -46,11 +46,9 @@
 <div class="sect1">
 <h2 id="list_of_articles_in_this_repository">List of articles in this repository</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>{% for post in site.posts %}
- &lt;li&gt;&lt;a href=".{{ post.url }}"&gt;{{ post.navtitle }}&lt;/a&gt;&lt;/li&gt;
- {% endfor %}</p>
-</div>
+{% for post in site.posts %}
+<li><a href=".{{ post.url }}">{{ post.navtitle }}</a></li>
+{% endfor %}
 </div>
 </div>
 
