@@ -3,24 +3,52 @@ layout: default
 ---
 
 <div class="row">
+
+    <!-- Main Blog Content -->
+
     <div class="large-9 columns" role="content">
-        <h4>Posts</h4>
-        <div class="posts nav">
-          {% for post in site.posts %}
-            <div>
-              <h3>
-                {% if post.external_url %}
-                  <a href="{{ post.external_url }}">{{ post.navtitle }}</a>
-                {% else %}
-                  <a href=".{{ post.url }}">{{ post.navtitle }}</a>
-                {% endif %}
-              </h3>
-              {{ post.date | date: "%b %-d, %Y" }}
-              {% if post.summary %}
-                <p> {{ post.summary }} </p>
+
+      <h4>Posts</h4>
+      <div class="posts nav">
+        {% for post in site.posts %}
+          <div>
+            <h3>
+              {% if post.external_url %}
+                <a href="{{ post.external_url }}">{{ post.navtitle }}</a>
+              {% else %}
+                <a href=".{{ post.url }}">{{ post.navtitle }}</a>
               {% endif %}
-            </div>
-          {% endfor %}
-        </div>
+            </h3>
+            {{ post.date | date: "%b %-d, %Y" }}
+            {% if post.summary %}
+              <p> {{ post.summary }} </p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
     </div>
+
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+
+    <aside class="large-3 columns">
+
+        <h4>Posts</h4>
+        <ul id="posts" class="posts nav">
+            {% for post in site.posts limit: 5 %}
+                <li>
+                  {% if post.external_url %}
+                      <a href="{{ post.external_url }}">{{ post.navtitle }}</a>
+                  {% else %}
+                      <a href=".{{ post.url }}">{{ post.navtitle }}</a>
+                  {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </aside>
+
+    <!-- End Sidebar -->
 </div>
