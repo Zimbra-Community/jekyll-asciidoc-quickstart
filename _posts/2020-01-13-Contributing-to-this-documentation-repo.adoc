@@ -2,7 +2,7 @@
 :showtitle:
 :page-navtitle: Contributing to this documentation repo.
 :page-excerpt: A quick guide about how to contribute to this documentation repository.
-//:page-root: ../../../
+:page-root: ../../../
 //:page-layout: post
 
 == Basic information
