@@ -56,18 +56,25 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="creating_new_content">Creating new content</h2>
+<h2 id="creating_content">Creating content</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="article_headers">Article Headers</h3>
 <div class="paragraph">
 <p>Articles must be written in Asciidoctor, and all articles must have the following header (example taken from this very article):</p>
 </div>
-<div class="listingblock">
+<div class="exampleblock">
+<div class="title">Example 1. Header code</div>
+<div class="content">
+<div class="literalblock">
 <div class="content">
 <pre>= Contributing to this documentation repo
 :showtitle:
 :page-navtitle: Contributing to this documentation repo.
 :page-excerpt: A quick guide about how to contribute to this documentation repository.
 :page-root: ../../../</pre>
+</div>
+</div>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -122,8 +129,75 @@
 </tbody>
 </table>
 <div class="paragraph">
+<p>The following optional headers can also be added:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Optional Headers</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Header</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:author:</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The author&#8217;s name and last name</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:author: Filippo Cinetto</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:email:</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The author&#8217;s email address</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>:email: <a href="mailto:cine@zetalliance.org">cine@zetalliance.org</a></code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
 <p>A blank line must always be added between the header and the first section of the article, and no blank lines must be added within the header.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="variables">Variables</h3>
+<div class="paragraph">
+<p>The header section can also include custom variables, declared in the same format as the header and called in the article code putting the name between curly brackets:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Variables</div>
+<div class="content">
+<div class="paragraph">
+<p>Adding</p>
+</div>
+<div class="paragraph">
+<p><code>:url_zeta_repo: <a href="https://github.com/Zimbra-Community" class="bare">https://github.com/Zimbra-Community</a></code></p>
+</div>
+<div class="paragraph">
+<p>to the headers will cause Asciidoctor to replace every occurrence of</p>
+</div>
+<div class="paragraph">
+<p><code>{url_zeta_repo}</code></p>
+</div>
+<div class="paragraph">
+<p>in the article code with <code><a href="https://github.com/Zimbra-Community" class="bare">https://github.com/Zimbra-Community</a></code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="article_content">Article Content</h3>
 <div class="paragraph">
 <p>After the header, the real article begins with at least a Level 1 section:</p>
 </div>
@@ -139,7 +213,7 @@ On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-qui
 <p>Articles can have nested sections, but I suggest to avoid nesting too much to improve readability.</p>
 </div>
 <div class="paragraph">
-<p>[<a href="https://asciidoctor.org/docs/user-manual/The" class="bare">https://asciidoctor.org/docs/user-manual/The</a> full Asciidoctor User Manual can be found here].</p>
+<p><a href="https://asciidoctor.org/docs/user-manual/">The full Asciidoctor User Manual can be found here</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -156,37 +230,11 @@ Simple is often better: try to express one concept per sentence, and use a newli
 <div class="paragraph">
 <p>It contains <strong>everything</strong> you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.</p>
 </div>
+</div>
 <div class="sect2">
 <h3 id="images_and_screenshots">Images and Screenshots</h3>
 <div class="paragraph">
-<p>Images and screenshots must be placed in a subdirectory of <code>/_resources/images/</code> named as the article file (without the .adoc extension).</p>
-</div>
-<div class="paragraph">
-<p>As seen above, each article must have its own images directory, which is defined in the header by the <code>:imagesdir:</code> attribute.</p>
-</div>
-<div class="paragraph">
-<p>The Asciidoctor base syntax to include an inline image is <code>image::filename.jpg[]</code> - the Alt Text, width and height of the image can be entered in this order between the brackets, e.g.:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>$ ls _resources/images/2020-01-13-Contributing-to-this-documentation-repo/
-smiley.jpg</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>:imagesdir: /_resources/images/2020-01-13-Contributing-to-this-documentation-repo/
-[...]
-image::smiley.jpg[Smiley,300]</pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="smiley.jpg" alt="Smiley" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively, external images can also be added inline using a full URL:</p>
+<p>Image hosting is not supported yet, external images can be added inline using the following syntax:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -197,6 +245,24 @@ image::smiley.jpg[Smiley,300]</pre>
 <div class="content">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux" width="250" height="350">
 </div>
+</div>
+<div class="paragraph">
+<p>Inside the square brackets you can enter, in this very order, the Alt Text for the image, its width and its height.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Always enter an Alt Text and a width - if you omit the height Asciidoctor will simply scale down the image maintaining its proportions.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you need a host for your images you can use <a href="https://imgbb.com">imgBB</a> or <a href="https://imgur.com">Imgur</a>, neither site requires registration (but Imgur applies lossy compression on files larger than 1mb if you are uploading without an account).</p>
 </div>
 </div>
 <div class="sect2">
@@ -237,7 +303,7 @@ a|`:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/`|Defin
 </div>
 </div>
 <div class="sect1">
-<h2 id="adding_the_content_to_the_site">Adding the content to the site</h2>
+<h2 id="publishing_content">Publishing content</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>New posts are added as a single file within the <code>_posts</code> subdirectory of the <strong>master</strong> branch.</p>
@@ -261,7 +327,125 @@ As a rule of thumb, the title in the filename should always be the same as those
 </table>
 </div>
 <div class="paragraph">
-<p>To publish an article you just need to open a Pull Request on the <strong>master</strong> branch with your content</p>
+<p>To publish an article you just need to open a Pull Request on the <strong>master</strong> branch with your content (which in turn requires a GitHub account).</p>
+</div>
+<div class="paragraph">
+<p>The quickest way to do so is to follow <a href="https://help.github.com/en/github/managing-files-in-a-repository/adding-a-file-to-a-repository">this very simple guide</a> making sure to chose the "Create a new branch for this commit and start a Pull Request" at the end of the process.</p>
+</div>
+<div class="paragraph">
+<p>If you plan to frequently add content to this repo, you might want to <a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo">fork the repo on your GitHub account</a> and <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository">clone it on your computer to work locally</a> before issuing your Pull Request. If you choose this method, remember to do the following every time you want to work on a new Article:</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is a very quick recap of what you need to do to publish an article from a forked repo, if you don&#8217;t have any previous experience with GitHub please use the quick method mentioned above and have a look at the <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests">official "Collaborating with issues and pull requests"</a> GitHub documentation.
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Pull the changes from the remote master branch to update your local copy;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git branch master</code></p>
+</li>
+<li>
+<p><code>git pull</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Once you are on the updated master branch, create a new local branch for your new article and checkout it to have it as your working branch:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git checkout -b new-branch-name</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You also need to push the branch to GitHub (after doing this, the branch will appear in your GitHub repo);</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git push origin new-branch-name</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can now start creating your article as described above. Once you are done with it, you can push your code to GitHub, merge the branch with your master one and start a Pull Request:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check out what files have been changed;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git status</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Stage all unstaged changes;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git add -A</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Commit and push all changes to the repo;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git commit -m "Add a commit message here"</code></p>
+</li>
+<li>
+<p><code>git push</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Checkout the master branch and merge the article branch;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git checkout master</code></p>
+</li>
+<li>
+<p><code>git merge new-branch-name</code></p>
+</li>
+<li>
+<p><code>git push</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that the article is in the master branch of your forked repo, you can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork">create a Pull Request from your fork to the main repo.</a></p>
 </div>
 </div>
 </div>
