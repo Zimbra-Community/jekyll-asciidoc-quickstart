@@ -3,24 +3,24 @@
 :page-navtitle: Contributing to this documentation repo.
 :page-excerpt: A quick guide about how to contribute to this documentation repository.
 :page-root: ../../../
-//:page-layout: post
 
 == Basic information
 This documentation repository is hosted on GitHub pages, which is based on the https://jekyllrb.com[Jekyll framework].
 
 On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-quickstart/[TravisCI automation] to both recompile the site after a new post is added and to support the https://asciidoctor.org[Asciidoctor markup language].
 
-== Creating new content
+== Creating content
+=== Article Headers
 Articles must be written in Asciidoctor, and all articles must have the following header (example taken from this very article):
 
-----
-= Contributing to this documentation repo
-:showtitle:
-:page-navtitle: Contributing to this documentation repo.
-:page-excerpt: A quick guide about how to contribute to this documentation repository.
-:page-root: ../../../
-
-----
+.Header code
+====
+ = Contributing to this documentation repo
+ :showtitle:
+ :page-navtitle: Contributing to this documentation repo.
+ :page-excerpt: A quick guide about how to contribute to this documentation repository.
+ :page-root: ../../../
+====
 
 .Header Elements
 [options="header"]
@@ -34,8 +34,35 @@ a|`:page-root: ../../../`|Defines the article's root. Due to the repository's st
 a|`:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/`|Defines the directory that contains all screenshots and images displayed in the article.
 |===
 
+The following optional headers can also be added:
+
+.Optional Headers
+[options="header"]
+|===
+|Header|Description|Example
+a|`:author:`| The author's name and last name a|`:author: Filippo Cinetto`
+a|`:email:`| The author's email address a|`:email: cine@zetalliance.org`
+|===
+
 A blank line must always be added between the header and the first section of the article, and no blank lines must be added within the header.
 
+=== Variables
+The header section can also include custom variables, declared in the same format as the header and called in the article code putting the name between curly brackets:
+
+.Variables
+====
+Adding
+
+`:url_zeta_repo: https://github.com/Zimbra-Community`
+
+to the headers will cause Asciidoctor to replace every occurrence of
+
+`{url_zeta_repo}`
+
+in the article code with `https://github.com/Zimbra-Community`.
+====
+
+=== Article Content
 After the header, the real article begins with at least a Level 1 section:
 
 ----
@@ -47,40 +74,25 @@ On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-qui
 
 Articles can have nested sections, but I suggest to avoid nesting too much to improve readability.
 
-[https://asciidoctor.org/docs/user-manual/The full Asciidoctor User Manual can be found here].
+https://asciidoctor.org/docs/user-manual/[The full Asciidoctor User Manual can be found here].
 
 TIP: Simple is often better: try to express one concept per sentence, and use a newline to separate paragraphs.
 
 It contains *everything* you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.
 
 === Images and Screenshots
-Images and screenshots must be placed in a subdirectory of `/_resources/images/` named as the article file (without the .adoc extension).
-
-As seen above, each article must have its own images directory, which is defined in the header by the `:imagesdir:` attribute.
-
-The Asciidoctor base syntax to include an inline image is `image::filename.jpg[]` - the Alt Text, width and height of the image can be entered in this order between the brackets, e.g.:
-
-----
-$ ls _resources/images/2020-01-13-Contributing-to-this-documentation-repo/
-smiley.jpg
-
-----
-
-----
-:imagesdir: /_resources/images/2020-01-13-Contributing-to-this-documentation-repo/
-[...]
-image::smiley.jpg[Smiley,300]
-----
-
-image::smiley.jpg[Smiley,300]
-
-Alternatively, external images can also be added inline using a full URL:
+Image hosting is not supported yet, external images can be added inline using the following syntax:
 
 ----
 image::https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg[Tux,250,350]
 ----
 image::https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg[Tux,250,350]
 
+Inside the square brackets you can enter, in this very order, the Alt Text for the image, its width and its height.
+
+TIP: Always enter an Alt Text and a width - if you omit the height Asciidoctor will simply scale down the image maintaining its proportions.
+
+If you need a host for your images you can use https://imgbb.com[imgBB] or https://imgur.com[Imgur], neither site requires registration (but Imgur applies lossy compression on files larger than 1mb if you are uploading without an account).
 
 === Tables
 Among all the Asciidoctor features that can be used, tables are usually the most useful. As an example, this is the code for Table 1 above:
@@ -107,7 +119,7 @@ There are several editors that support Asciidoc syntax highlighting and page pre
 
 This editor is available for Microsoft Windows, MacOS and Linux, and has a built-in GitHub client you can use to publish your articles straight away.
 
-== Adding the content to the site
+== Publishing content
 New posts are added as a single file within the `_posts` subdirectory of the *master* branch.
 
 Each post's name must comply to the following naming convention:
@@ -116,4 +128,36 @@ Each post's name must comply to the following naming convention:
 
 TIP: As a rule of thumb, the title in the filename should always be the same as those in the file's header (title and navtitle).
 
-To publish an article you just need to open a Pull Request on the *master* branch with your content
+To publish an article you just need to open a Pull Request on the *master* branch with your content (which in turn requires a GitHub account).
+
+The quickest way to do so is to follow https://help.github.com/en/github/managing-files-in-a-repository/adding-a-file-to-a-repository[this very simple guide] making sure to chose the "Create a new branch for this commit and start a Pull Request" at the end of the process.
+
+If you plan to frequently add content to this repo, you might want to https://help.github.com/en/github/getting-started-with-github/fork-a-repo[fork the repo on your GitHub account] and https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository[clone it on your computer to work locally] before issuing your Pull Request. If you choose this method, remember to do the following every time you want to work on a new Article:
+
+WARNING: This is a very quick recap of what you need to do to publish an article from a forked repo, if you don't have any previous experience with GitHub please use the quick method mentioned above and have a look at the https://help.github.com/en/github/collaborating-with-issues-and-pull-requests[official "Collaborating with issues and pull requests"] GitHub documentation.
+
+====
+* Pull the changes from the remote master branch to update your local copy;
+** `git branch master`
+** `git pull`
+* Once you are on the updated master branch, create a new local branch for your new article and checkout it to have it as your working branch:
+** `git checkout -b new-branch-name`
+* You also need to push the branch to GitHub (after doing this, the branch will appear in your GitHub repo);
+** `git push origin new-branch-name`
+
+You can now start creating your article as described above. Once you are done with it, you can push your code to GitHub, merge the branch with your master one and start a Pull Request:
+
+* Check out what files have been changed;
+** `git status`
+* Stage all unstaged changes;
+** `git add -A`
+* Commit and push all changes to the repo;
+** `git commit -m "Add a commit message here"`
+** `git push`
+* Checkout the master branch and merge the article branch;
+** `git checkout master`
+** `git merge new-branch-name`
+** `git push`
+====
+
+Now that the article is in the master branch of your forked repo, you can https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork[create a Pull Request from your fork to the main repo.]
