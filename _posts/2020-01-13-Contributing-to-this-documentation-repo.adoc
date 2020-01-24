@@ -31,7 +31,6 @@ a|`:showtitle:`|Instructs Asciidoctor to print the article's title at the beginn
 a|`:page-navtitle: [Insert title here]`|Defines the Jekyll 'navtitle' variable, which should be the same as the article's title.
 a|`:page-excerpt: [Insert excerpt here]`|Defines the Jekyll 'excerpt' variable, which should be an except of the article content.
 a|`:page-root: ../../../`|Defines the article's root. Due to the repository's structure, it must always be `../../../`
-a|`:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/`|Defines the directory that contains all screenshots and images displayed in the article.
 |===
 
 The following optional headers can also be added:
@@ -67,6 +66,7 @@ After the header, the real article begins with at least a Level 1 section:
 
 ----
 == Basic information
+[#BasicInfo]
 This documentation repository is hosted on GitHub pages, which is based on the https://jekyllrb.com[Jekyll framework].
 
 On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-quickstart/[TravisCI automation] to both recompile the site after a new post is added and to support the https://asciidoctor.org[Asciidoctor markup language].
@@ -74,11 +74,109 @@ On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-qui
 
 Articles can have nested sections, but I suggest to avoid nesting too much to improve readability.
 
+It is also possible to assign an HTML anchor to each section by adding [#anchorName] right below the section title.
+
 https://asciidoctor.org/docs/user-manual/[The full Asciidoctor User Manual can be found here].
+
+It contains *everything* you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.
 
 TIP: Simple is often better: try to express one concept per sentence, and use a newline to separate paragraphs.
 
-It contains *everything* you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.
+=== Text formatting
+Text formatting is done inline, by adding the appropriate format character at the beginning and at the end of the formatted text.
+
+The most commonly used formats are:
+
+.Text formatting characters
+[options="header"]
+|===
+| Format | Character | Example a| Output
+| Bold | * | `\*Lorem Ipsum*` | *Lorem Ipsum*
+| Italic | _ | `\_dolor sit amet_` | _dolor sit amet_
+| Monospaced | ` | ``consectetur adipiscing elit` ` | `consectetur adipiscing elit`
+| Subscript and Superscript | ~ and ^ | `+H~2~O is water. E=mc^2^ is the mass-energy equivalence equation+`| H~2~O is water. E=mc^2^ is the mass-energy equivalence equation
+|===
+
+TIP: In Asciidoc, the content of a monospaced string is still rendered by the interpreter. To avoid this, use "``+`" and "`+``" instead of the standard "`" to delimit the text.
+
+=== Blocks
+Blocks are delimited text sections that are rendered in different ways based on the type of block.
+
+To create a block, simply add the appropriate block delimiter above and below the content of the block itself. To add a title, enter it right above the opening delimiter preceded by a `.`
+
+Among the 10+ block types featured in Asciidoc, the most commonly used are:
+
+==== The example block
+Block Delimiter: ====
+
+e.g.
+
+ .This is the Block Title
+ ====
+ This is the content of an example block
+ ====
+
+Output:
+
+.This is the Block Title
+====
+This is the content of an example block
+====
+
+==== The source code block
+Block Delimiter: `----`
+
+e.g.
+
+  [source,java]
+  ----
+  System.out.println("Hello world").
+  ----
+
+Output:
+[source,java]
+----
+System.out.println("Hello world").
+----
+
+==== The quote block
+Block Delimiter: `____` (four underscores)
+
+e.g.
+
+ [quote, Andrew Tannembaum, Computer Networks, 3rd ed., p. 83]
+ ____
+Never underestimate the bandwidth of a station wagon full of tapes hurtling down the highway.
+ ____
+
+
+Output:
+
+[quote, Andrew Tannembaum, Computer Networks 3rd ed. - p. 83]
+____
+Never underestimate the bandwidth of a station wagon full of tapes hurtling down the highway.
+____
+
+==== The fenced block
+Block Delimiter: ` ` ` (three backticks, unspaced)
+
+e.g.
+
+ ```
+ This is a fenced block, its content will *not* be parsed.
+ ```
+
+Output:
+
+```
+This is a fenced block, its content will *not* be parsed.
+```
+
+It is also possible to create a verbatim block by adding a whitespace before every line that must be included in the block, e.g.
+
+ This line begins with a whitespace.
+ I know you can't see it, but it's really there.
+ Just like the fenced block, *nothing* in here will be parsed.
 
 === Images and Screenshots
 Image hosting is not supported yet, external images can be added inline using the following syntax:
@@ -106,7 +204,6 @@ a|`:showtitle:`|Instructs Asciidoctor to print the article's title at the beginn
 a|`:page-navtitle: [Insert title here]`|Defines the Jekyll 'navtitle' variable, which should be the same as the article's title.
 a|`:page-excerpt: [Insert excerpt here]`|Defines the Jekyll 'excerpt' variable, which should be an except of the article content.
 a|`:page-root: ../../../`|Defines the article's root. Due to the repository's structure, it must always be `../../../`
-a|`:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/`|Defines the directory that contains all screenshots and images displayed in the article.
 |===
 ----
 
