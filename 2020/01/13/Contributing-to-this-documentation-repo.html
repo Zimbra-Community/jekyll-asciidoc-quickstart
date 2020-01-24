@@ -120,12 +120,6 @@
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines the article&#8217;s root. Due to the repository&#8217;s structure, it must always be <code>../../../</code></p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the directory that contains all screenshots and images displayed in the article.</p></td>
-</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -204,6 +198,7 @@
 <div class="listingblock">
 <div class="content">
 <pre>== Basic information
+[#BasicInfo]
 This documentation repository is hosted on GitHub pages, which is based on the https://jekyllrb.com[Jekyll framework].
 
 On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-quickstart/[TravisCI automation] to both recompile the site after a new post is added and to support the https://asciidoctor.org[Asciidoctor markup language].</pre>
@@ -213,7 +208,13 @@ On top of this, we use a https://github.com/Zimbra-Community/jekyll-asciidoc-qui
 <p>Articles can have nested sections, but I suggest to avoid nesting too much to improve readability.</p>
 </div>
 <div class="paragraph">
+<p>It is also possible to assign an HTML anchor to each section by adding [#anchorName] right below the section title.</p>
+</div>
+<div class="paragraph">
 <p><a href="https://asciidoctor.org/docs/user-manual/">The full Asciidoctor User Manual can be found here</a>.</p>
+</div>
+<div class="paragraph">
+<p>It contains <strong>everything</strong> you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -227,8 +228,199 @@ Simple is often better: try to express one concept per sentence, and use a newli
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="text_formatting">Text formatting</h3>
 <div class="paragraph">
-<p>It contains <strong>everything</strong> you can do with the language, so I strongly suggest to have a quick look at it to find out the options you have when writing an article and then use it as a reference for your specific needs.</p>
+<p>Text formatting is done inline, by adding the appropriate format character at the beginning and at the end of the formatted text.</p>
+</div>
+<div class="paragraph">
+<p>The most commonly used formats are:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Text formatting characters</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Character</th>
+<th class="tableblock halign-left valign-top">Example</th>
+<th class="tableblock halign-left valign-top">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Lorem Ipsum*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Lorem Ipsum</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Italic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_dolor sit amet_</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>dolor sit amet</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monospaced</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>`consectetur adipiscing elit</code> `</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>consectetur adipiscing elit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscript and Superscript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~ and ^</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>H~2~O is water. E=mc^2^ is the mass-energy equivalence equation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">H<sub>2</sub>O is water. E=mc<sup>2</sup> is the mass-energy equivalence equation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In Asciidoc, the content of a monospaced string is still rendered by the interpreter. To avoid this, use &#8220;`+&#8221; and &#8220;+`&#8221; instead of the standard "`" to delimit the text.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blocks">Blocks</h3>
+<div class="paragraph">
+<p>Blocks are delimited text sections that are rendered in different ways based on the type of block.</p>
+</div>
+<div class="paragraph">
+<p>To create a block, simply add the appropriate block delimiter above and below the content of the block itself. To add a title, enter it right above the opening delimiter preceded by a <code>.</code></p>
+</div>
+<div class="paragraph">
+<p>Among the 10+ block types featured in Asciidoc, the most commonly used are:</p>
+</div>
+<div class="sect3">
+<h4 id="the_example_block">The example block</h4>
+<div class="paragraph">
+<p>Block Delimiter: ====</p>
+</div>
+<div class="paragraph">
+<p>e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.This is the Block Title
+====
+This is the content of an example block
+====</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. This is the Block Title</div>
+<div class="content">
+<div class="paragraph">
+<p>This is the content of an example block</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="the_source_code_block">The source code block</h4>
+<div class="paragraph">
+<p>Block Delimiter: <code>----</code></p>
+</div>
+<div class="paragraph">
+<p>e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[source,java]
+----
+System.out.println("Hello world").
+----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello world</span><span class="delimiter">&quot;</span></span>).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="the_quote_block">The quote block</h4>
+<div class="paragraph">
+<p>Block Delimiter: <code><em>__</em></code> (four underscores)</p>
+</div>
+<div class="paragraph">
+<p>e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> [quote, Andrew Tannembaum, Computer Networks, 3rd ed., p. 83]
+ ____
+Never underestimate the bandwidth of a station wagon full of tapes hurtling down the highway.
+ ____</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Never underestimate the bandwidth of a station wagon full of tapes hurtling down the highway.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Andrew Tannembaum<br>
+<cite>Computer Networks 3rd ed. - p. 83</cite>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="the_fenced_block">The fenced block</h4>
+<div class="paragraph">
+<p>Block Delimiter: ` ` ` (three backticks, unspaced)</p>
+</div>
+<div class="paragraph">
+<p>e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>```
+This is a fenced block, its content will *not* be parsed.
+```</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>This is a fenced block, its content will *not* be parsed.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is also possible to create a verbatim block by adding a whitespace before every line that must be included in the block, e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>This line begins with a whitespace.
+I know you can't see it, but it's really there.
+Just like the fenced block, *nothing* in here will be parsed.</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -280,7 +472,6 @@ a|`:showtitle:`|Instructs Asciidoctor to print the article's title at the beginn
 a|`:page-navtitle: [Insert title here]`|Defines the Jekyll 'navtitle' variable, which should be the same as the article's title.
 a|`:page-excerpt: [Insert excerpt here]`|Defines the Jekyll 'excerpt' variable, which should be an except of the article content.
 a|`:page-root: ../../../`|Defines the article's root. Due to the repository's structure, it must always be `../../../`
-a|`:imagesdir: images/2020-01-13-Contributing-to-this-documentation-repo/`|Defines the directory that contains all screenshots and images displayed in the article.
 |===</pre>
 </div>
 </div>
